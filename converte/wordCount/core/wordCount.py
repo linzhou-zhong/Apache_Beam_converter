@@ -35,7 +35,7 @@ def run(argv=None, save_main_session=True):
         "--input",
         dest="input",
         default=os.path.join(
-            Path(__file__).parent.parent, "source/countword/input", "input.txt"
+            Path(__file__).parent.parent, "source/input", "input.txt"
         ),
         help="Input file to process.",
     )
@@ -44,7 +44,7 @@ def run(argv=None, save_main_session=True):
         "--output",
         dest="output",
         default=os.path.join(
-            Path(__file__).parent.parent, "source/countword/output", "output"
+            Path(__file__).parent.parent, "source/output", "output"
         ),
         help="Output file to write results to.",
     )

@@ -7,13 +7,13 @@ import os
 from typing import List
 
 import apache_beam as beam
-from apache_beam.io import ReadFromText, ReadAllFromText
+from apache_beam.io import ReadAllFromText
 from apache_beam.transforms import Reshuffle
 from apache_beam.io import WriteToText
 from apache_beam.options.pipeline_options import PipelineOptions
 from apache_beam.options.pipeline_options import SetupOptions
 
-from utils.read import FileSystem
+from core import FileSystem
 from urllib.parse import urlparse
 
 
@@ -46,7 +46,7 @@ def run(argv=None, save_main_session=True):
     parser.add_argument(
         "--input",
         dest="input",
-        default=os.path.join(Path(__file__).parent.parent, "source/tabular/input"),
+        default=os.path.join(Path(__file__).parent.parent, "source/input"),
         help="Input file to process.",
     )
 
@@ -61,7 +61,7 @@ def run(argv=None, save_main_session=True):
         "--output",
         dest="output",
         default=os.path.join(
-            Path(__file__).parent.parent, "source/tabular/output", "output"
+            Path(__file__).parent.parent, "source/output", "output"
         ),
         help="Output file to write results to.",
     )
@@ -70,7 +70,7 @@ def run(argv=None, save_main_session=True):
         "--headers",
         dest="headers",
         default=os.path.join(
-            Path(__file__).parent.parent, "source/tabular/config", "headers.txt"
+            Path(__file__).parent.parent, "config", "headers.txt"
         ),
         help="Headers of csv file",
     )
