@@ -13,7 +13,8 @@ from apache_beam.io import WriteToText
 from apache_beam.options.pipeline_options import PipelineOptions
 from apache_beam.options.pipeline_options import SetupOptions
 
-from utils.read import get_all_files
+from utils.read import FileSystem
+from urllib.parse import urlparse
 
 
 class ConvertTabularToJson(beam.DoFn):
@@ -99,11 +100,15 @@ def run(argv=None, save_main_session=True):
     with open(known_args.headers, "r") as content:
         headers = content.read().splitlines()
 
+    protocol = urlparse(known_args.input).scheme
+
+    fs = FileSystem(protocol=protocol)
+
     with beam.Pipeline(options=pipeline_options) as p:
 
         # Read the text file[pattern] into a PCollection
         files = p | "Get Files List" >> beam.Create(
-            get_all_files(known_args.input, known_args.pattern)
+            fs.get_files(path=known_args.input, file_pattern=known_args.pattern)
         )
 
         lines = (
