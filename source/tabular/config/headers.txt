@@ -1,0 +1,12 @@
+Series_reference
+Period
+Data_value
+STATUS
+UNITS
+Subject
+Group
+Series_title_1
+Series_title_2
+Series_title_3
+Series_title_4
+Series_title_5
